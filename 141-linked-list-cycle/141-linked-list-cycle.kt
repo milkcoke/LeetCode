@@ -10,13 +10,13 @@
 
 class Solution {
     fun hasCycle(head: ListNode?): Boolean {
-        var nextNode: ListNode? = head
-        val hashSet: MutableSet<ListNode> = mutableSetOf()
-        
-        while(nextNode != null) {
-            if(hashSet.contains(nextNode)) return true
-            hashSet.add(nextNode)
-            nextNode = nextNode.next
+        var slow_ptr = head
+        var fast_ptr = head
+
+        while(slow_ptr != null && fast_ptr != null && fast_ptr.next != null) {
+            slow_ptr = slow_ptr.next
+            fast_ptr = fast_ptr.next!!.next
+            if (slow_ptr == fast_ptr) return true
         }
         
         return false
